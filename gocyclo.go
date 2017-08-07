@@ -42,6 +42,7 @@ Flags:
         -top N    show the top N most complex functions only
         -avg      show the average complexity over all functions,
                   not depending on whether -over or -top are set
+				-version  print version and exit
 
 The output fields for each line are:
 <complexity> <package> <function> <file:row:column>
@@ -53,9 +54,10 @@ func usage() {
 }
 
 var (
-	over = flag.Int("over", 0, "show functions with complexity > N only")
-	top  = flag.Int("top", -1, "show the top N most complex functions only")
-	avg  = flag.Bool("avg", false, "show the average complexity")
+	over    = flag.Int("over", 0, "show functions with complexity > N only")
+	top     = flag.Int("top", -1, "show the top N most complex functions only")
+	avg     = flag.Bool("avg", false, "show the average complexity")
+	version = flag.Bool("version", false, "show the average complexity")
 )
 
 func main() {
@@ -66,6 +68,11 @@ func main() {
 	args := flag.Args()
 	if len(args) == 0 {
 		usage()
+	}
+
+	if *version {
+		fmt.Println("gocyclo version 0.1.0")
+		os.Exit(0)
 	}
 
 	stats := analyze(args)
