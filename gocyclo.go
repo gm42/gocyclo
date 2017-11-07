@@ -71,7 +71,7 @@ func main() {
 	}
 
 	if *version {
-		fmt.Println("gocyclo version 0.1.0")
+		fmt.Println("gocyclo version 0.2.0")
 		os.Exit(0)
 	}
 
